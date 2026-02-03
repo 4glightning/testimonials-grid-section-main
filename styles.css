@@ -1,0 +1,224 @@
+/* ========================================
+   1. RESET
+======================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* ========================================
+   2. DESIGN TOKENS (variables)
+======================================== */
+:root {
+  /* ===== Colors ===== */
+  --purple-50: hsl(260, 100%, 95%);
+  --purple-300: hsl(264, 82%, 80%);
+  --purple-500: hsl(263, 55%, 52%);
+
+  --white: hsl(0, 0%, 100%);
+  --grey-100: hsl(214, 17%, 92%);
+  --grey-200: hsl(0, 0%, 81%);
+  --grey-400: hsl(224, 10%, 45%);
+  --grey-500: hsl(217, 19%, 35%);
+  --dark-blue: hsl(219, 29%, 14%);
+  --black: hsl(0, 0%, 7%);
+
+  /* ===== Typography ===== */
+  --font-base: "Barlow Semi Condensed", system-ui, sans-serif;
+  --text-base: 0.8125rem; /* 13px */
+
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* ===== Spacing ===== */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+
+  /* ===== Radius ===== */
+  --radius: 0.75rem;
+
+  /* ===== Container ===== */
+  --container-max: 90rem; /* 1440px */
+}
+
+
+/* ========================================
+   3. GLOBAL (mobile first)
+======================================== */
+body {
+  font-family: var(--font-base);
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+
+  background: var(--grey-100);
+  color: var(--grey-500);
+
+  padding: var(--space-3);
+}
+
+
+/* ========================================
+   4. LAYOUT
+======================================== */
+.container {
+  width: min(100%, var(--container-max));
+  margin-inline: auto;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+
+/* ========================================
+   5. CARD COMPONENT
+======================================== */
+.card {
+  background: var(--white);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3);
+}
+
+
+/* ---------- Header layout (avatar + text) ---------- */
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/* ---------- Avatar ---------- */
+.card__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid var(--grey-200);
+}
+
+
+/* ---------- Text ---------- */
+.card__username {
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+}
+
+.card__role {
+  font-size: 0.75rem;
+  color: var(--grey-500);
+  line-height: 1.5;
+}
+
+.card__quote {
+  font-weight: var(--fw-semibold);
+  font-size: 1.2rem;
+}
+
+.card__description {
+  opacity: 0.85;
+}
+
+
+/* ========================================
+   6. CARD MODIFIERS (colors)
+======================================== */
+
+/* Purple */
+.card--purple {
+  background: var(--purple-500);
+  color: var(--white);
+}
+.card--purple .card__avatar {
+  border-color: var(--purple-300);
+}
+
+.card--purple .card__role {
+  color: var(--purple-50);
+}
+
+/* Gray */
+.card--gray {
+  background: var(--grey-500);
+  color: var(--white);
+}
+
+.card--gray .card__role {
+  color: var(--grey-200);
+}
+
+/* Black/Dark */
+.card--black {
+  background: var(--dark-blue);
+  color: var(--white);
+}
+
+.card--black .card__avatar {
+  border-color: var(--purple-500);
+}
+
+.card--black .card__role {
+  color: var(--grey-200);
+}
+
+/* Light */
+.card--light {
+  background: var(--white);
+  color: var(--grey-500);
+}
+
+
+/* ========================================
+   7. RESPONSIVE (enhance only)
+======================================== */
+
+/* Tablet */
+@media (min-width: 48rem) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 64rem) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Optional: make first card larger like Frontend Mentor design */
+  .card--purple {
+    grid-column: span 2;
+  }
+
+  .card--gray {
+    grid-column: span 1;
+  }
+}
