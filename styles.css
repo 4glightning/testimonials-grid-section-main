@@ -1,3 +1,11 @@
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
 /* ========================================
    1. RESET
 ======================================== */
@@ -13,7 +21,6 @@ img {
   max-width: 100%;
   display: block;
 }
-
 
 /* ========================================
    2. DESIGN TOKENS (variables)
@@ -52,7 +59,6 @@ img {
   --container-max: 90rem; /* 1440px */
 }
 
-
 /* ========================================
    3. GLOBAL (mobile first)
 ======================================== */
@@ -68,7 +74,6 @@ body {
   padding: var(--space-3);
 }
 
-
 /* ========================================
    4. LAYOUT
 ======================================== */
@@ -82,7 +87,6 @@ body {
   flex-direction: column;
   gap: var(--space-3);
 }
-
 
 /* ========================================
    5. CARD COMPONENT
@@ -98,7 +102,6 @@ body {
   margin: var(--space-3);
 }
 
-
 /* ---------- Header layout (avatar + text) ---------- */
 .card__header {
   display: flex;
@@ -112,7 +115,6 @@ body {
   justify-content: center;
 }
 
-
 /* ---------- Avatar ---------- */
 .card__avatar {
   width: 2.5rem;
@@ -123,7 +125,6 @@ body {
 
   border: 2px solid var(--grey-200);
 }
-
 
 /* ---------- Text ---------- */
 .card__username {
@@ -145,7 +146,6 @@ body {
 .card__description {
   opacity: 0.85;
 }
-
 
 /* ========================================
    6. CARD MODIFIERS (colors)
@@ -194,7 +194,6 @@ body {
   color: var(--grey-500);
 }
 
-
 /* ========================================
    7. RESPONSIVE (enhance only)
 ======================================== */
@@ -207,18 +206,54 @@ body {
   }
 }
 
-/* Desktop */
+/* ========================================
+   DESKTOP LAYOUT (matches screenshot)
+======================================== */
 @media (min-width: 64rem) {
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* horizontal */
+    align-items: center; /* vertical */
+  }
+  /* container width */
+  .container {
+    max-width: 70rem;
+    margin: 0 auto;
+  }
+
+  /* GRID LAYOUT */
   .cards {
+    display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
+    grid-template-areas:
+      "purple purple gray kira"
+      "white  black  black kira";
   }
 
-  /* Optional: make first card larger like Frontend Mentor design */
+  /* CARD POSITIONS */
   .card--purple {
-    grid-column: span 2;
+    grid-area: purple;
+    margin: 0;
+  }
+  .card--gray {
+    grid-area: gray;
+    margin: 0;
+  }
+  .card--black {
+    grid-area: black;
+    margin: 0;
+  }
+  .card--jeanette {
+    grid-area: white;
+    margin: 0;
+  }
+  .card--kira {
+    grid-area: kira;
+    margin: 0;
   }
 
-  .card--gray {
-    grid-column: span 1;
-  }
+  /* optional: slightly larger desktop padding */
 }
